@@ -3,6 +3,21 @@ import java.util.Scanner;
 public class DataTypes {
 
     public static void main(String[] args) {
+
+        /*
+        Sample Input
+
+        12
+        4.0
+        is the best place to learn and practice coding!
+
+                Sample Output
+
+        16
+        8.0
+        HackerRank is the best place to learn and practice coding!
+        */
+
         int i = 4;
         double d = 4.0;
         String s = "HackerRank ";
