@@ -12,20 +12,21 @@ public class LetsReview {
             for (int i = 0; i < t; i++) {
                 String s1 = scanner.nextLine();
                 char[] myCharArray = s1.toCharArray();
-
-                for (int j = 0; j < myCharArray.length; j++) {
-                    if (j % 2 == 0) {
-                        System.out.print(myCharArray[j]);
+                if (myCharArray.length < 10000 && myCharArray.length >2) {
+                    for (int j = 0; j < myCharArray.length; j++) {
+                        if (j % 2 == 0) {
+                            System.out.print(myCharArray[j]);
+                        }
                     }
-                }
-                System.out.print(" ");
+                    System.out.print(" ");
 
-                for (int j = 0; j < myCharArray.length; j++) {
-                    if (j % 2 != 0) {
-                        System.out.print(myCharArray[j]);
+                    for (int j = 0; j < myCharArray.length; j++) {
+                        if (j % 2 != 0) {
+                            System.out.print(myCharArray[j]);
+                        }
                     }
+                    System.out.println();
                 }
-                System.out.println();
             }
         } else {
             System.out.println("T must be between 1 and 10");
