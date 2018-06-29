@@ -12,7 +12,7 @@ public class LetsReview {
             for (int i = 0; i < t; i++) {
                 String s1 = scanner.nextLine();
                 char[] myCharArray = s1.toCharArray();
-                if (myCharArray.length < 10000 && myCharArray.length >2) {
+                if (s1.length() <= 10000 && s1.length() >= 2) {
                     for (int j = 0; j < myCharArray.length; j++) {
                         if (j % 2 == 0) {
                             System.out.print(myCharArray[j]);
