@@ -1,7 +1,5 @@
 import org.junit.Test;
 
-import java.lang.reflect.*;
-
 import static org.junit.Assert.assertEquals;
 
 public class PeopleTest {

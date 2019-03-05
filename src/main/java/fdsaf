@@ -1,0 +1,132 @@
+public String getOutstandingAmountCurrency() {
+		return outstandingAmountCurrency;
+	}
+
+	 setOutstandingAmountCurrency(String outstandingAmountCurrency) {
+		this.outstandingAmountCurrency = outstandingAmountCurrency;
+	}
+
+	public BigDecimal getOutstandingAmount() {
+		return outstandingAmount;
+	}
+
+	
+	 setOutstandingAmount(BigDecimal outstandingAmount) {
+		this.outstandingAmount = outstandingAmount;
+	}
+
+	public BigDecimal getGrantedOperationalAmount() {
+		return grantedOperationalAmount;
+	}
+
+	 setGrantedOperationalAmount(BigDecimal grantedOperationalAmount) {
+		this.grantedOperationalAmount = grantedOperationalAmount;
+	}
+	
+	
+	public String getGrantedOperationalAmountCurrency() {
+		return grantedOperationalAmountCurrency;
+	}
+
+	 setGrantedOperationalAmountCurrency(String grantedOperationalAmountCurrency) {
+		this.grantedOperationalAmountCurrency = grantedOperationalAmountCurrency;
+	}
+
+
+	public BigDecimal getCreditLineNumber() {
+		return creditLineNumber;
+	}
+
+	 setCreditLineNumber(BigDecimal creditLineNumber) {
+		this.creditLineNumber = creditLineNumber;
+	}
+
+	public BigDecimal getOperatingAccount() {
+		return operatingAccount;
+	}
+
+	 setOperatingAccount(BigDecimal operatingAccount) {
+		this.operatingAccount = operatingAccount;
+	}
+
+	public String getCreditLineCode() {
+		return creditLineCode;
+	}
+
+	 setCreditLineCode(String creditLineCode) {
+		this.creditLineCode = creditLineCode;
+	}
+
+	public String getAccountType() {
+		return accountType;
+	}
+
+	 setAccountType(String accountType) {
+		this.accountType = accountType;
+	}
+
+	public String getCallingSystem() {
+		return callingSystem;
+	}
+
+	 setCallingSystem(String callingSystem) {
+		this.callingSystem = callingSystem;
+	}
+
+	public String getNonPerformingItem() {
+		return nonPerformingItem;
+	}
+
+	 setNonPerformingItem(String nonPerformingItem) {
+		this.nonPerformingItem = nonPerformingItem;
+	}
+
+	public Date getFacilityExpiryDate() {
+		return facilityExpiryDate;
+	}
+
+	 setFacilityExpiryDate(Date facilityExpiryDate) {
+		this.facilityExpiryDate = facilityExpiryDate;
+	}
+
+	public BigDecimal getCreditAmountApproved() {
+		return creditAmountApproved;
+	}
+
+	 setCreditAmountApproved(BigDecimal creditAmountApproved) {
+		this.creditAmountApproved = creditAmountApproved;
+	}
+
+	public String getCreditAmountApprovedCurrency() {
+		return creditAmountApprovedCurrency;
+	}
+
+	 setCreditAmountApprovedCurrency(String creditAmountApprovedCurrency) {
+		this.creditAmountApprovedCurrency = creditAmountApprovedCurrency;
+	}
+
+	
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	 setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public String getOldCreditLineNumber() {
+		return oldCreditLineNumber;
+	}
+
+	 setOldCreditLineNumber(String oldCreditLineNumber) {
+		this.oldCreditLineNumber = oldCreditLineNumber;
+	}
+
+	public String getOldOperatingAccount() {
+		return oldOperatingAccount;
+	}
+
+	 setOldOperatingAccount(String oldOperatingAccount) {
+		this.oldOperatingAccount = oldOperatingAccount;
+	}
