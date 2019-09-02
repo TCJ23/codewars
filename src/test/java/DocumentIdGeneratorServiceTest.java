@@ -10,13 +10,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("document generator service")
 public class DocumentIdGeneratorServiceTest {
 
+    private DocumentIdGeneratorService idGeneratorService = new DocumentIdGeneratorService();
     private static final String DOCUMENT_TYPE = "GPERS";
     private static final String COD_ABI = "80023";
     private static final int BUSINESS_SPECIFIC_SIZE = 41;
     private static final String MUST_NOD_ADD_ZEROS_WHEN_CLIENT_ID_LONGER_THAN_13_DIGITS = "000";
     private static final String MUST_ADD_10_ZEROS_TO_3_DIGIT_CLIENT_ID = "0000000000";
     private static final String MUST_NOT_ADD_ZEROS = "000";
-    private DocumentIdGeneratorService idGeneratorService = new DocumentIdGeneratorService();
     private static final String CURRENT_YEAR = createCurrentYear();
     private static final String CURRENT_MONTH = createCurrentMonth();
     private static final String CURRENT_DAY = createCurrentDay();
@@ -34,11 +34,12 @@ public class DocumentIdGeneratorServiceTest {
         assertThat(documentId).startsWith(SSA).endsWith(DOCUMENT_TYPE);
         assertThat(documentId)
                 .containsOnlyOnce(CURRENT_YEAR)
-                .containsOnlyOnce(CURRENT_DAY)
+                .containsOnlyOnce(CURRENT_MONTH)
                 .containsOnlyOnce(CURRENT_DAY);
         assertThat(documentId).containsSubsequence(MUST_ADD_10_ZEROS_TO_3_DIGIT_CLIENT_ID);
         assertThat(documentId).hasSize(BUSINESS_SPECIFIC_SIZE);
         assertThat(documentId).containsOnlyOnce(CURRENT_DATE);
+        System.out.println(documentId);
     }
 
     @Test
@@ -51,12 +52,13 @@ public class DocumentIdGeneratorServiceTest {
                 .endsWith(DOCUMENT_TYPE);
         assertThat(documentId)
                 .containsOnlyOnce(CURRENT_YEAR)
-                .containsOnlyOnce(CURRENT_DAY)
+                .containsOnlyOnce(CURRENT_MONTH)
                 .containsOnlyOnce(CURRENT_DAY);
         assertThat(documentId).containsOnlyOnce(CURRENT_YEAR);
         assertThat(documentId).doesNotContain(MUST_NOD_ADD_ZEROS_WHEN_CLIENT_ID_LONGER_THAN_13_DIGITS);
         assertThat(documentId).hasSize(BUSINESS_SPECIFIC_SIZE);
         assertThat(documentId).containsOnlyOnce(CURRENT_DATE);
+        System.out.println(documentId);
     }
 
     @Test
@@ -69,11 +71,12 @@ public class DocumentIdGeneratorServiceTest {
                 .endsWith(DOCUMENT_TYPE);
         assertThat(documentId)
                 .containsOnlyOnce(CURRENT_YEAR)
-                .containsOnlyOnce(CURRENT_DAY)
+                .containsOnlyOnce(CURRENT_MONTH)
                 .containsOnlyOnce(CURRENT_DAY);
         assertThat(documentId).doesNotContain(MUST_NOT_ADD_ZEROS);
         assertThat(documentId).hasSize(BUSINESS_SPECIFIC_SIZE);
         assertThat(documentId).containsOnlyOnce(CURRENT_DATE);
+        System.out.println(documentId);
     }
 
     private static String createCurrentDate() {
@@ -81,23 +84,24 @@ public class DocumentIdGeneratorServiceTest {
     }
 
     private static String createCurrentYear() {
-        Date date = new Date();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
+        Calendar calendar = getCalendar();
         return String.valueOf(calendar.get(Calendar.YEAR));
     }
 
     private static String createCurrentMonth() {
-        Date date = new Date();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
+        Calendar calendar = getCalendar();
         return String.valueOf(calendar.get(Calendar.YEAR));
     }
 
     private static String createCurrentDay() {
+        Calendar calendar = getCalendar();
+        return String.valueOf(calendar.get(Calendar.YEAR));
+    }
+
+    private static Calendar getCalendar() {
         Date date = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        return String.valueOf(calendar.get(Calendar.YEAR));
+        return calendar;
     }
 }
