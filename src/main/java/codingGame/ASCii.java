@@ -8,32 +8,45 @@ public class ASCii {
         Scanner in = new Scanner(System.in);
         AsciiParams asciiParams = readParametersFromInput(in);
         validateParams(asciiParams);
-        String[][] strings = create2dAsciiArrayFromText(asciiParams);
+        String[][] strings = create2dAsciiArrayFromLetters(asciiParams);
         printOutAsciiCharacters(strings);
     }
 
 
-    public static String[][] create2dAsciiArrayFromText(AsciiParams asciiParams) {
+    public static String[][] create2dAsciiArrayFromLetters(AsciiParams asciiParams) {
         int letterWidth = asciiParams.getSingleAsciiCharacterWidth();
         int letterHeight = asciiParams.getSingleAsciiCharacterHeight();
 
-
-        String[][] asciiResult = new String[letterHeight][letterWidth];
+        String[][] asciiResult = new String[letterHeight][asciiParams.getTextToPrint().length() * letterWidth];
         String[][] patternTemplate = asciiParams.getAsciiArray();
         String textToPrint = asciiParams.getTextToPrint().toUpperCase();
-
+        int pointer = 0;
         for (char singleLetter : textToPrint.toCharArray()) {
-            int index = (int) singleLetter - 65;
-            int evaluatedIndex = checkIndex(index);
 
-            for (int row = 0; row < letterHeight; row++) {
-
-                for (int ascii = 0; ascii < letterWidth; ascii++) {
-                    int shift = evaluatedIndex * letterWidth + ascii;
-                    asciiResult[row][ascii] = patternTemplate[row][shift];
+            String[][] singleAsciiLetter = createSingleAsciiLetter(letterWidth, letterHeight, patternTemplate, singleLetter);
+            for (int resultRow = 0; resultRow < singleAsciiLetter.length; resultRow++) {
+                for (int column = 0; column < singleAsciiLetter[resultRow].length; column++) {
+                    asciiResult[resultRow][pointer + column] = singleAsciiLetter[resultRow][column];
                 }
             }
+            pointer += letterWidth;
         }
+        return asciiResult;
+    }
+
+    private static String[][] createSingleAsciiLetter(int letterWidth, int letterHeight, String[][] patternTemplate, int singleLetter) {
+        int index = singleLetter - 65;
+        int evaluatedIndex = checkIndex(index);
+        String[][] asciiResult = new String[letterHeight][letterWidth];
+
+        for (int row = 0; row < letterHeight; row++) {
+
+            for (int ascii = 0; ascii < letterWidth; ascii++) {
+                int shift = evaluatedIndex * letterWidth + ascii;
+                asciiResult[row][ascii] = patternTemplate[row][shift];
+            }
+        }
+
         return asciiResult;
     }
 
@@ -73,7 +86,7 @@ public class ASCii {
         return new AsciiParams(width, height, textToPrint, array);
     }
 
-    private static void printOutAsciiCharacters(String[][] data) {
+    public static void printOutAsciiCharacters(String[][] data) {
         for (int row = 0; row < data.length; row++) {
             for (int column = 0; column < data[row].length; column++) {
                 System.out.print(data[row][column]);
