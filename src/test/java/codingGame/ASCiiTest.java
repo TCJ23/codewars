@@ -14,7 +14,7 @@ public class ASCiiTest {
         AsciiParams asciiParams = new AsciiParams(4, 5, "E", array);
 
         String[][] eAscii = createE();
-        String[][] extractedAscii = ASCii.doALL();
+        String[][] extractedAscii = ASCii.create2dAsciiArrayFromText(asciiParams);
 
         assertThat(extractedAscii).isEqualTo(eAscii);
     }

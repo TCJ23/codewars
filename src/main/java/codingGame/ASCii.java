@@ -8,10 +8,42 @@ public class ASCii {
         Scanner in = new Scanner(System.in);
         AsciiParams asciiParams = readParametersFromInput(in);
         validateParams(asciiParams);
-        String[][] strings = doALL();
+        String[][] strings = create2dAsciiArrayFromText(asciiParams);
         printOutAsciiCharacters(strings);
-
     }
+
+
+    public static String[][] create2dAsciiArrayFromText(AsciiParams asciiParams) {
+        int letterWidth = asciiParams.getSingleAsciiCharacterWidth();
+        int letterHeight = asciiParams.getSingleAsciiCharacterHeight();
+
+
+        String[][] asciiResult = new String[letterHeight][letterWidth];
+        String[][] patternTemplate = asciiParams.getAsciiArray();
+        String textToPrint = asciiParams.getTextToPrint().toUpperCase();
+
+        for (char singleLetter : textToPrint.toCharArray()) {
+            int index = (int) singleLetter - 65;
+            int evaluatedIndex = checkIndex(index);
+
+            for (int row = 0; row < letterHeight; row++) {
+
+                for (int ascii = 0; ascii < letterWidth; ascii++) {
+                    int shift = evaluatedIndex * letterWidth + ascii;
+                    asciiResult[row][ascii] = patternTemplate[row][shift];
+                }
+            }
+        }
+        return asciiResult;
+    }
+
+    private static int checkIndex(int index) {
+        if (index < 0 || index > 25) {
+            index = 26;
+        }
+        return index;
+    }
+
 
     private static void validateParams(AsciiParams asciiParams) {
         int height = asciiParams.getSingleAsciiCharacterHeight();
@@ -19,7 +51,8 @@ public class ASCii {
         int numberOfAsciiCharacters = asciiParams.getTextToPrint().toCharArray().length;
 
         if (height < 0 || width < 0 || numberOfAsciiCharacters <= 0 ||
-                height > 30 || width > 30 || numberOfAsciiCharacters > 200) {
+                height > 30 || width > 30 || numberOfAsciiCharacters > 200 ||
+                (numberOfAsciiCharacters / width) != 0) {
             throw new IllegalArgumentException();
         }
     }
@@ -38,10 +71,6 @@ public class ASCii {
         }
 
         return new AsciiParams(width, height, textToPrint, array);
-    }
-
-    public static String[][] doALL() {
-        return new String[0][0];
     }
 
     private static void printOutAsciiCharacters(String[][] data) {
