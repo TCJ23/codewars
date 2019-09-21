@@ -47,6 +47,21 @@ public class ASCiiTest {
 
     }
 
+    @Test
+    void shouldPrintManhattan() {
+
+        String[][] array = createTestData();
+
+        AsciiParams asciiParams = new AsciiParams(4, 5, "M@NH@TT@N", array);
+
+        String[][] alphabetAscii = createTestData();
+        String[][] extractedAscii = ASCii.create2dAsciiArrayFromLetters(asciiParams);
+
+        ASCii.printOutAsciiCharacters(extractedAscii);
+        assertThat(extractedAscii).isEqualTo(alphabetAscii);
+
+    }
+
 
     private static String[][] createA() {
         String row0 = " #  ";

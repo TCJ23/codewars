@@ -22,16 +22,20 @@ public class ASCii {
         String textToPrint = asciiParams.getTextToPrint().toUpperCase();
         int pointer = 0;
         for (char singleLetter : textToPrint.toCharArray()) {
-
-            String[][] singleAsciiLetter = createSingleAsciiLetter(letterWidth, letterHeight, patternTemplate, singleLetter);
-            for (int resultRow = 0; resultRow < singleAsciiLetter.length; resultRow++) {
-                for (int column = 0; column < singleAsciiLetter[resultRow].length; column++) {
-                    asciiResult[resultRow][pointer + column] = singleAsciiLetter[resultRow][column];
-                }
-            }
-            pointer += letterWidth;
+            pointer = concatenateLetters(letterWidth, letterHeight, asciiResult, patternTemplate, pointer, singleLetter);
         }
         return asciiResult;
+    }
+
+    private static int concatenateLetters(int letterWidth, int letterHeight, String[][] asciiResult, String[][] patternTemplate, int pointer, char singleLetter) {
+        String[][] singleAsciiLetter = createSingleAsciiLetter(letterWidth, letterHeight, patternTemplate, singleLetter);
+        for (int resultRow = 0; resultRow < singleAsciiLetter.length; resultRow++) {
+            for (int column = 0; column < singleAsciiLetter[resultRow].length; column++) {
+                asciiResult[resultRow][pointer + column] = singleAsciiLetter[resultRow][column];
+            }
+        }
+        pointer += letterWidth;
+        return pointer;
     }
 
     private static String[][] createSingleAsciiLetter(int letterWidth, int letterHeight, String[][] patternTemplate, int singleLetter) {
@@ -94,4 +98,6 @@ public class ASCii {
             System.out.println();
         }
     }
+
+
 }
